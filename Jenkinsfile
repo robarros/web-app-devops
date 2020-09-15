@@ -45,6 +45,7 @@ node(LABEL_ID) {
         sh "ls -lha"
         sh "pwd"       
         echo "a tag da minha imagem é ${IMAGEM_TAG}"
+        sh 'printenv'
   }}
 
 }}
