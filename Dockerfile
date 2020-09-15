@@ -9,7 +9,7 @@ WORKDIR /app
 # - dist: A production build compiled with Babel
 FROM base AS builder
 
-COPY package*.json .babelrc.json ./
+COPY package*.json ./
 
 RUN npm install
 
