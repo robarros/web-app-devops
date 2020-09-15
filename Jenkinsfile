@@ -23,6 +23,7 @@ node(LABEL_ID) {
       container('node-12') {        
         echo "Usando semmantic-release"
         checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
+        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
         sh 'npm ci'
         sh 'npx semantic-release'
         switch (env.BRANCH_NAME) {
