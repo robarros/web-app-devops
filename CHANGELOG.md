@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/robarros/web-app-devops/compare/1.1.2...1.1.3) (2020-09-15)
+
+
+### Bug Fixes
+
+* update jenkinsfile ([9189627](https://github.com/robarros/web-app-devops/commit/9189627a91cdba32a617c5ca1b13e335f6df43dc))
+
 ## [1.1.2](https://github.com/robarros/web-app-devops/compare/1.1.1...1.1.2) (2020-09-15)
 
 
