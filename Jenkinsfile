@@ -28,12 +28,12 @@ node(LABEL_ID) {
         sh 'npx semantic-release'
         switch (env.BRANCH_NAME) {
           case "master":
-            echo "estou na master"
+            echo "estou na branch ${env.BRANCH_NAME}"
             IMAGE_FULL = "producao"
             IMAGEM_TAG = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
             break
           case "devops":
-            echo "estou na devops"
+            echo "estou na branch ${env.BRANCH_NAME}"
             IMAGE_FULL = "desenvolvimento"
             break
   }}}
@@ -42,10 +42,9 @@ node(LABEL_ID) {
       container('alpine') {
         echo 'Alterado as Configuracoes da imagem docker'      
         echo "Estou fazendo deploy da versao da imagem ${IMAGEM_TAG} na branch ${env.BRANCH_NAME}"
-        sh "ls -lha"
-        sh "pwd"       
+        sh "pwd"    
+        sh "ls -lha" 
         echo "a tag da minha imagem é ${IMAGEM_TAG}"
-        sh 'printenv'
   }}
 
 }}
