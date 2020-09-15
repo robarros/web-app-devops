@@ -16,9 +16,11 @@ RUN npm prune --production # Remove dev dependencies
 
 FROM node:12-alpine
 
+WORKDIR /app
+
 COPY --from=builder /app/node_modules ./node_modules
 
-COPY --from=builder ./src ./src
+COPY --from=builder /app/src ./src
 
 USER node
 
