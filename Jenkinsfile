@@ -41,11 +41,10 @@ node(LABEL_ID) {
   stage('configs') {
       container('alpine') {
         echo 'Alterado as Configuracoes da imagem docker'      
-        echo "estou fazendo deploy da imagem de ${IMAGE_FULL}"
+        echo "Estou fazendo deploy da versao da imagem ${IMAGE_FULL} na branch ${env.BRANCH_NAME}"
         sh "ls -lha"
         sh "pwd"       
         echo "a tag da minha imagem é ${IMAGEM_TAG}"
-        echo "ola ${JOB_NAME}"
   }}
 
 }}
