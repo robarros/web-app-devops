@@ -4,7 +4,7 @@ podTemplate(
     label: LABEL_ID,  
     cloud: 'k8s',
     containers: [
-      containerTemplate(name: 'node-12', image: 'node:14', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
+      containerTemplate(name: 'node-12', image: 'node:12', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
       containerTemplate(name: 'alpine', image: 'alpine', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
       containerTemplate(name: 'k8s-kubectl', image: 'jshimko/kube-tools-aws', args: 'cat', command: '/bin/sh -c', ttyEnabled: true)]
 )
