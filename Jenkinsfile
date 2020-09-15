@@ -23,6 +23,8 @@ node(LABEL_ID) {
       container('node-12') {        
         echo "Usando semmantic-release"
         checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
+        sh 'npm ci'
+        sh 'npm run release'
         switch (env.BRANCH_NAME) {
           case "master":
             echo "estou na master"
@@ -33,8 +35,6 @@ node(LABEL_ID) {
             echo "estou na devops"
             IMAGE_FULL = "desenvolvimento"
             break
-        sh "npm ci"     
-        sh "npx semantic-release"
   }}}
 
   stage('configs') {
