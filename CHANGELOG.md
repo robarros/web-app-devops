@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/robarros/web-app-devops/compare/1.0.4...1.1.0) (2020-09-15)
+
+
+### Features
+
+* add new feature ([439848c](https://github.com/robarros/web-app-devops/commit/439848cc4e974d0ef41f5947d74cb3d4f56a797b))
+
 ## [1.0.4](https://github.com/robarros/web-app-devops/compare/1.0.3...1.0.4) (2020-09-15)
 
 
