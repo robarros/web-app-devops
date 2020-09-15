@@ -4,7 +4,7 @@ podTemplate(
     label: LABEL_ID,  
     cloud: 'k8s',
     containers: [
-      containerTemplate(name: 'node-12', image: 'node:12-alpine', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
+      containerTemplate(name: 'node-12', image: 'node:14', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
       containerTemplate(name: 'alpine', image: 'alpine', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
       containerTemplate(name: 'k8s-kubectl', image: 'jshimko/kube-tools-aws', args: 'cat', command: '/bin/sh -c', ttyEnabled: true)]
 )
@@ -19,26 +19,27 @@ def IMAGEM_TAG
     
 node(LABEL_ID) {
     
-  stage('Checkout') {
-    echo 'Checkout do repositorio do Git'
-    checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
-    switch (env.BRANCH_NAME) {
-      case "master":
-        echo "estou na master"
-        IMAGE_FULL = "producao"
-        IMAGEM_TAG = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
-        break
-      case "devops":
-        echo "estou na devops"
-        IMAGE_FULL = "desenvolvimento"
-        break
-    }
-    
-  }
-  
+  stage('semantic-release') {     
+      container('node-12') {        
+        echo "Usando semmantic-release"
+        checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
+        switch (env.BRANCH_NAME) {
+          case "master":
+            echo "estou na master"
+            IMAGE_FULL = "producao"
+            IMAGEM_TAG = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
+            break
+          case "devops":
+            echo "estou na devops"
+            IMAGE_FULL = "desenvolvimento"
+            break
+        sh "npm ci"     
+        sh "npm run release"
+  }}}
+
   stage('configs') {
       container('alpine') {
-        echo 'Alterado as Configuracoes dos Arquivos do Deploy'      
+        echo 'Alterado as Configuracoes da imagem docker'      
         echo "estou fazendo deploy da imagem de ${IMAGE_FULL}"
         sh "ls -lha"
         sh "pwd"       
