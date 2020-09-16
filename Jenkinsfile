@@ -47,10 +47,4 @@ node(LABEL_ID) {
         echo "a tag da minha imagem é ${IMAGEM_TAG}"
   }}
 
-  stage('lab') {
-      when {
-        branch 'devops'
-      }                
-  }
-
-  }}
+}}
