@@ -32,7 +32,7 @@ node(LABEL_ID) {
             IMAGE_FULL = "producao"
             IMAGEM_TAG = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
             break
-          case "devops":
+          case "dev":
             echo "estou na branch ${env.BRANCH_NAME}"
             IMAGE_FULL = "desenvolvimento"
             break
