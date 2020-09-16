@@ -50,8 +50,7 @@ node(LABEL_ID) {
   stage('lab') {
       when {
         branch 'devops'
-      }
-      echo 'Check de branch'                  
+      }                
   }
 
   }}
