@@ -23,14 +23,14 @@ node(LABEL_ID) {
       container('node-12') {        
         echo "Usando semmantic-release"
         checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
-        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
-        sh 'npm ci'
-        sh 'npx semantic-release'
+        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')        
         switch (env.BRANCH_NAME) {
           case "master":
             echo "estou na branch ${env.BRANCH_NAME}"
             IMAGE_FULL = "producao"
             IMAGEM_TAG = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
+            sh 'npm ci'
+            sh 'npx semantic-release'
             break
           case "dev":
             echo "estou na branch ${env.BRANCH_NAME}"
