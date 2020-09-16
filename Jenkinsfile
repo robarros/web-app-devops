@@ -44,7 +44,7 @@ node(LABEL_ID) {
         echo "Estou fazendo deploy da versao da imagem ${IMAGEM_TAG} na branch ${env.BRANCH_NAME}"
         sh "pwd"    
         sh "ls -lha" 
-        echo "a tag da minha imagem é ${IMAGEM_TAG}"
+        echo "A tag da minha imagem é ${IMAGEM_TAG}"
   }}
 
 }}
