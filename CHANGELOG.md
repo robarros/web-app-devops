@@ -1,3 +1,11 @@
+## [1.1.4](https://github.com/robarros/web-app-devops/compare/1.1.3...1.1.4) (2020-09-16)
+
+
+### Bug Fixes
+
+* nova versao ([b91b040](https://github.com/robarros/web-app-devops/commit/b91b040d31d415aa6cc873c05d9d46f4841082fc))
+* v1 ([7df0064](https://github.com/robarros/web-app-devops/commit/7df00647c75eed0bd03f9b47a01f99a431feae00))
+
 ## [1.1.3](https://github.com/robarros/web-app-devops/compare/1.1.2...1.1.3) (2020-09-15)
 
 
