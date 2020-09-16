@@ -1,3 +1,11 @@
+## [1.2.2](https://github.com/robarros/web-app-devops/compare/1.2.1...1.2.2) (2020-09-16)
+
+
+### Bug Fixes
+
+* remove v1 ([6fb729d](https://github.com/robarros/web-app-devops/commit/6fb729ddae2b1d378765c9f55a8176d075017667))
+* remove v2 ([33a7509](https://github.com/robarros/web-app-devops/commit/33a750968f091f94448b23c81c83cb2d9ff0aad3))
+
 ## [1.2.1](https://github.com/robarros/web-app-devops/compare/1.2.0...1.2.1) (2020-09-16)
 
 
