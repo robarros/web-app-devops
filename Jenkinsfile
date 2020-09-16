@@ -49,8 +49,8 @@ node(LABEL_ID) {
 
   stage('lab') {
       when {
-        expression { env.BRANCH_NAME ==~ /(devops)/ 
-        echo 'Check de branch'                  
-  }}
+        expression { env.BRANCH_NAME ==~ /(devops)/ }
+      echo 'Check de branch'                  
+  }
 
   }}}
