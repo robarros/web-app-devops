@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/robarros/web-app-devops/compare/1.2.0...1.2.1) (2020-09-16)
+
+
+### Bug Fixes
+
+* ronaldo v1 ([e4377e1](https://github.com/robarros/web-app-devops/commit/e4377e130121da1eabceccc08bc62cc821af9178))
+* ronaldo v2 ([0dd12db](https://github.com/robarros/web-app-devops/commit/0dd12db4237ccf3bc890cbf541514450575c62f2))
+
 # [1.2.0](https://github.com/robarros/web-app-devops/compare/1.1.4...1.2.0) (2020-09-16)
 
 
