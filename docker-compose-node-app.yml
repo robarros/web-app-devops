@@ -1,4 +1,5 @@
-version: "3.4"
+---
+version: "3.8"
 services:
   express:
     image: node:12-alpine
@@ -18,5 +19,11 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
+    networks:
+      - node-net
+
 volumes:
-    nodemodules:
+  nodemodules:
+
+networks:
+  node-net:

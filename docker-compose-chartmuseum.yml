@@ -1,0 +1,21 @@
+---
+version: "3.8"
+services:
+  chartmuseum:
+    image: chartmuseum/chartmuseum:latest
+    volumes:
+      - "vol_charts:/charts"
+    ports:
+      - "8080:8080"
+    environment:
+      - DEBUG=true
+      - STORAGE=local
+      - STORAGE_LOCAL_ROOTDIR=/charts
+    networks:
+      - chartmuseum-net
+
+volumes:
+  vol_charts:
+
+networks:
+  chartmuseum-net:
