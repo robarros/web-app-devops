@@ -26,6 +26,7 @@ pipeline {
          container('alpine') {
            sh 'printenv'
            sh 'ls -lha'
+           echo "a tag da minha image $latestTag"
         }
       }
     }
