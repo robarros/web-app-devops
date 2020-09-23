@@ -1,10 +1,10 @@
 pipeline {
   agent {
-    kubernetes {
-      cloud: 'k8s'
-      label 'LABEL_ID'
-      idleMinutes 5
-      defaultContainer 'jnlp'
+      kubernetes {
+        cloud: 'k8s'
+        label 'LABEL_ID'
+        idleMinutes 5
+        defaultContainer 'jnlp'
     }
   }
   stages {
