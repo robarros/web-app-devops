@@ -1,8 +1,8 @@
 pipeline {
 
   environment {
-        IMAGE_TAG = "${sh(script:'ls -lah', returnStdout: true).trim()}"
-    }
+     IMAGE_TAG = "${sh(script:'git describe --tags --abbrev=0', returnStdout: true).trim()}"
+  }
 
   agent {
       kubernetes {
