@@ -17,6 +17,7 @@ pipeline {
          echo "rodando container"   
          container('alpine') {
            sh 'printenv'
+           sh 'ls -lha'
         }
       }
     }
