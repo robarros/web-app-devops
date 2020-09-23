@@ -1,5 +1,9 @@
 pipeline {
 
+  environment {
+        IMAGE_TAG = "${sh(script:'ls -lah', returnStdout: true).trim()}"
+    }
+
   agent {
       kubernetes {
         cloud 'k8s'
