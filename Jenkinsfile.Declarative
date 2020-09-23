@@ -4,7 +4,7 @@ pipeline {
         cloud 'k8s'
         idleMinutes '1'
         yamlFile 'pods/KubernetesPod.yaml' 
-        showRawYaml False
+        label 'ronaldo'
     }
   }
   stages {
