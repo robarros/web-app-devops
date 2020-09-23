@@ -1,10 +1,9 @@
 pipeline {
 
-  environment {
-     IMAGE_TAG = "${sh(script:'git describe --tags --abbrev=0', returnStdout: true).trim()}"
-  }
-
   agent {
+      environment {
+        IMAGE_TAG = "${sh(script:'git describe --tags --abbrev=0', returnStdout: true).trim()}"
+      }
       kubernetes {
         cloud 'k8s'
         idleMinutes '1'
