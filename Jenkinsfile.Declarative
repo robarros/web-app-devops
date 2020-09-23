@@ -12,17 +12,12 @@ pipeline {
     stage('Checkout') {
       steps { 
         echo "checkout repositorio github"
-        checkout([
-           $class: 'GitSCM',
-           branches: scm.branches,
-           doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-           extensions: [[$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: '']],
-           userRemoteConfigs: scm.userRemoteConfigs,
-        ])
+        checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
         script {
-          latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
-          sh 'echo ${env.latestTag}'
+           env.latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
+           echo "latestTag = ${env.latestTag}"
         }
+        echo "ola minha $latestTag"
       }
     }
     stage('Config') {
@@ -31,7 +26,6 @@ pipeline {
          container('alpine') {
            sh 'printenv'
            sh 'ls -lha'
-           echo "A tag da minha imagem é ${env.latestTag}"
         }
       }
     }
