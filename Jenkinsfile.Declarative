@@ -1,7 +1,5 @@
 pipeline {
 
-  def IMAGEM_TAG 
-  
   agent {
       kubernetes {
         cloud 'k8s'
