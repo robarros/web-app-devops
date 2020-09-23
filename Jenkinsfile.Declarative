@@ -9,9 +9,10 @@ pipeline {
       }
   }
   stages {
-    stage('Build') {
+    stage('Checkout') {
       steps { 
-        echo "ola a todos"
+        echo "checkout repositorio github"
+        checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
         script {
           latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
           sh 'echo ${env.latestTag}'
