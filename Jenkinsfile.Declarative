@@ -8,6 +8,7 @@ pipeline {
         label 'web-app-devops'
       }
   }
+  
   stages {
     stage('Checkout') {
       steps { 
@@ -19,6 +20,7 @@ pipeline {
         echo "ola minha $TAG_IMAGE"
       }
     }
+    
     stage('Config') {
       steps { 
          echo "rodando container"   
