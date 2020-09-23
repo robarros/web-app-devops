@@ -1,6 +1,6 @@
 pipeline {
 
-def LABEL_ID = "web-app-${UUID.randomUUID().toString()}"   
+LABEL_ID = "web-app-${UUID.randomUUID().toString()}"   
 
   agent {
     kubernetes {
