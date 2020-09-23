@@ -2,7 +2,7 @@ pipeline {
   agent {
       kubernetes {
         cloud 'k8s'
-        idleMinutes '3'
+        idleMinutes '1'
         yamlFile 'pods/KubernetesPod.yaml' 
     }
   }
