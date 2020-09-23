@@ -15,10 +15,10 @@ pipeline {
     }
     stage('config') {
       steps { 
-        echo "rodando container"   
-        container('alpine') {
-          echo "estou rodando dentro do container" 
-          sh "printenv"
+         echo "rodando container"   
+         container('alpine') {
+            echo 'estou rodando dentro do container'
+            sh 'printenv'
         }
       }
     }
