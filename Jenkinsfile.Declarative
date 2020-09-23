@@ -4,6 +4,7 @@ pipeline {
         cloud 'k8s'
         label 'web-app'
         idleMinutes 3
+        defaultContainer 'jnlp'
         yamlFile 'pods/KubernetesPod.yaml' 
     }
   }
