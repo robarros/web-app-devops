@@ -1,7 +1,7 @@
 pipeline {
   agent {
       kubernetes {
-        cloud: 'k8s'
+        cloud 'k8s'
         label 'LABEL_ID'
         idleMinutes 5
         defaultContainer 'jnlp'
