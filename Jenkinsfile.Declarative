@@ -4,6 +4,7 @@ pipeline {
         cloud 'k8s'
         label 'web-app'
         idleMinutes 3
+        yamlFile 'pods/declarative_from_yaml_file/KubernetesPod.yaml' 
     }
   }
   stages {
