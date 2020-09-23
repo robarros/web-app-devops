@@ -2,9 +2,7 @@ pipeline {
   agent {
       kubernetes {
         cloud 'k8s'
-        label 'web-app'
-        idleMinutes 3
-        defaultContainer 'jnlp'
+        idleMinutes '3'
         yamlFile 'pods/KubernetesPod.yaml' 
     }
   }
