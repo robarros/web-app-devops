@@ -13,7 +13,7 @@ pipeline {
       steps { 
         echo "ola a todos"
         script {
-          IMAGE_TAG = "${sh(script:'git describe --tags --abbrev=0', returnStdout: true).trim()}"
+          IMAGE_TAG = "${sh(script:'hostname', returnStdout: true).trim()}"
           echo "IMAGE_TAG = ${env.IMAGE_TAG}"
           sh 'echo $IMAGE_TAG'
         }
