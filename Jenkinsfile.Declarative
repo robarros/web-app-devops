@@ -6,7 +6,10 @@ pipeline {
         idleMinutes '1'
         yamlFile 'pods/KubernetesPod.yaml' 
         label 'web-app-devops'
-    }
+      }
+      environment {
+        IMAGE_TAG = "${sh(script:'git describe --tags --abbrev=0', returnStdout: true).trim()}"
+     }
   }
   stages {
     stage('Build') {
