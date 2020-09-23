@@ -8,6 +8,15 @@ spec:
   - name: alpine
     image: alpine
     command:
-    - cat
+    - /bin/sh -c
     tty: true
-    
+  - name: node-12
+    image: node-12
+    command:
+    - /bin/sh -c
+    tty: true
+  - name: k8s-kubectl
+    image: jshimko/kube-tools-aws
+    command:
+    - /bin/sh -c
+    tty: true
