@@ -13,9 +13,8 @@ pipeline {
       steps { 
         echo "ola a todos"
         script {
-          IMAGE_TAG = "${sh(script:'hostname', returnStdout: true).trim()}"
-          echo "IMAGE_TAG = ${env.IMAGE_TAG}"
-          sh 'echo $IMAGE_TAG'
+          latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
+          sh 'echo ${env.latestTag}'
         }
       }
     }
@@ -25,7 +24,7 @@ pipeline {
          container('alpine') {
            sh 'printenv'
            sh 'ls -lha'
-           echo "A tag da minha imagem é ${env.IMAGE_TAG}"
+           echo "A tag da minha imagem é ${env.latestTag}"
         }
       }
     }
