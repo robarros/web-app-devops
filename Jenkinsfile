@@ -29,12 +29,12 @@ node(LABEL_ID) {
             echo "estou na branch ${env.BRANCH_NAME}"
             sh 'npm ci'
             sh 'npx semantic-release'
-            IMAGE_FULL = "producao"
+            IMAGE_FULL = "Producao"
             IMAGEM_TAG = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
             break
           case "dev":
             echo "estou na branch ${env.BRANCH_NAME}"
-            IMAGE_FULL = "desenvolvimento"
+            IMAGE_FULL = "Desenvolvimento"
             break
   }}}
 
@@ -45,6 +45,7 @@ node(LABEL_ID) {
         sh "pwd"    
         sh "ls -lha" 
         echo "A tag da minha imagem é ${IMAGEM_TAG}"
+        echo "O Nome da imagem ${IMAGE_FULL}:${IMAGEM_TAG}"
   }}
 
 }}
