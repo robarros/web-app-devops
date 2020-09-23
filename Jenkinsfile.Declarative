@@ -1,5 +1,9 @@
 pipeline {
 
+  environment {
+     IMAGE_TAG = "${sh(script:'git describe --tags --abbrev=0', returnStdout: true).trim()}"
+  }
+
   agent {
       kubernetes {
         cloud 'k8s'
@@ -12,7 +16,6 @@ pipeline {
     stage('Build') {
       steps { 
         echo "ola a todos"
-        sh "export IMAGEM_TAG=\$(git describe --tags --abbrev=0)"
       }
     }
     stage('Config') {
@@ -21,7 +24,7 @@ pipeline {
          container('alpine') {
            sh 'printenv'
            sh 'ls -lha'
-           echo "A tag da minha imagem é ${IMAGEM_TAG}"
+           echo "A tag da minha imagem é ${IMAGE_TAG}"
         }
       }
     }
