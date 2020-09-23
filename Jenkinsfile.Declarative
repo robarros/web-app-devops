@@ -30,6 +30,7 @@ pipeline {
            sh 'printenv'
            sh 'ls -lha'
            echo "a tag da minha image $TAG_IMAGE"
+           echo "a branch atual é $BRANCH_NAME"
         }
       }
     }
