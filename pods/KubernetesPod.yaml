@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: web-app
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command:
+    - cat
+    tty: true
+  - name: node-12
+    image: node:12
+    command:
+    - cat
+    tty: true
+  - name: k8s-kubectl
+    image: jshimko/kube-tools-aws
+    command:
+    - cat
+    tty: true

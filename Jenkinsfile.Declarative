@@ -1,0 +1,49 @@
+pipeline {
+
+  agent {
+      kubernetes {
+        cloud 'k8s'
+        idleMinutes '1'
+        yamlFile 'pods/KubernetesPod.yaml' 
+        label 'web-app-devops'
+      }
+  }
+  
+  stages {
+    stage('Checkout') {
+      steps { 
+        echo "checkout repositorio github"
+        checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
+        scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+        script {
+          TAG_IMAGE = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
+        }
+        echo "ola minha $TAG_IMAGE"
+      }
+    }
+    
+    stage('Config') {
+      steps { 
+         echo "rodando container"   
+         container('alpine') {
+           sh 'printenv'
+           sh 'ls -lha'
+           echo "a tag da minha image $TAG_IMAGE"
+        }
+      }
+    }
+
+    stage('Create Git Tag') {
+            when {
+                branch 'master'
+            }
+            steps {
+                container('node-12') {
+                  sh 'npm ci'
+                  sh 'npx semantic-release'
+                }
+            }
+    }
+
+  }
+}

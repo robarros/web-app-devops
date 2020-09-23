@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/robarros/web-app-devops/compare/1.2.2...1.2.3) (2020-09-23)
+
+
+### Bug Fixes
+
+* nova versao ([ffc73aa](https://github.com/robarros/web-app-devops/commit/ffc73aa5dd1fce3b5e8c52ccd69c8acd7ed4255a))
+
 ## [1.2.2](https://github.com/robarros/web-app-devops/compare/1.2.1...1.2.2) (2020-09-16)
 
 
