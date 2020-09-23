@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/robarros/web-app-devops/compare/1.2.4...1.2.5) (2020-09-23)
+
+
+### Bug Fixes
+
+* add makefile producao ([c888d28](https://github.com/robarros/web-app-devops/commit/c888d287f46c37e9024111273c418155a1fb8964))
+
 ## [1.2.3](https://github.com/robarros/web-app-devops/compare/1.2.2...1.2.3) (2020-09-23)
 
 
