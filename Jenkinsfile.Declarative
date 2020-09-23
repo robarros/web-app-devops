@@ -12,7 +12,13 @@ pipeline {
     stage('Checkout') {
       steps { 
         echo "checkout repositorio github"
-        checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
+        checkout([
+           $class: 'GitSCM',
+           branches: scm.branches,
+           doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+           extensions: [[$class: 'CloneOption', noTags: false, shallow: false, depth: 0, reference: '']],
+           userRemoteConfigs: scm.userRemoteConfigs,
+        ])
         script {
           latestTag = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
           sh 'echo ${env.latestTag}'
