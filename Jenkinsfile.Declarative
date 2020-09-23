@@ -1,7 +1,4 @@
 pipeline {
-
-LABEL_ID = "web-app-${UUID.randomUUID().toString()}"   
-
   agent {
     kubernetes {
       cloud: 'k8s'
