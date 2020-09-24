@@ -69,7 +69,7 @@ pipeline {
                 container('k8s-kubectl') {
                   sh 'kubectl config use-context docker-desktop'
                   sh 'kubectl get nodes'
-                }
+                }}
             }
     }
 
