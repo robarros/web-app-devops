@@ -67,7 +67,7 @@ pipeline {
             steps {
               withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
                 container('k8s-kubectl') {
-                  sh 'kubectl config use-context docker-desktop'
+                  sh 'kubectl config use-context k3d-my-cluster'
                   sh 'kubectl get nodes'
                 }}
             }
