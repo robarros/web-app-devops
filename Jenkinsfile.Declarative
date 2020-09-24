@@ -47,19 +47,6 @@ pipeline {
             }
     }
 
-    stage('Deploy to Prod') {
-            when {
-                branch 'master'
-            }
-            steps {
-              withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
-                container('k8s-kubectl') {
-                  sh 'kubectl config use-context kubernetes-admin@cluster.local'
-                  sh 'kubectl get nodes'
-                }}
-            }
-    }
-
     stage('Deploy to Dev') {
             when {
                 branch 'dev'
@@ -68,6 +55,19 @@ pipeline {
               withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
                 container('k8s-kubectl') {
                   sh 'kubectl config use-context k3d-my-cluster'
+                  sh 'kubectl get nodes'
+                }}
+            }
+    }
+
+    stage('Deploy to Prod') {
+            when {
+                branch 'master'
+            }
+            steps {
+              withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
+                container('k8s-kubectl') {
+                  sh 'kubectl config use-context kubernetes-admin@cluster.local'
                   sh 'kubectl get nodes'
                 }}
             }
