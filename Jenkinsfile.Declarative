@@ -47,23 +47,28 @@ pipeline {
             }
     }
 
-    stage('Deploy') {
-      steps { 
-        if (env.BRANCH_NAME == 'master') {
-          container('alpine') {
-            echo "a branch atual é $BRANCH_NAME"}
-        }
+    stage('Deploy to Prod') {
+            when {
+                branch 'master'
+            }
+            steps {
+                container('k8s-kubectl') {
+                  sh 'kubectl get nodes'
+                }
+            }
+    }
 
-        else if (env.BRANCH_NAME == 'dev') {
-          container('alpine') {
-            echo "a branch atual é $BRANCH_NAME"}
-          }
+    stage('Deploy to Dev') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                container('k8s-kubectl') {
+                  sh 'kubectl get nodes'
+                }
+            }
+    }
 
-        else {
-          sh 'echo "Branch not applicable to Jenkins... do nothing"'
-        }}
-
-  }
 }
 
 }
