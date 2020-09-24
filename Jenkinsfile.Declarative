@@ -54,6 +54,7 @@ pipeline {
             steps {
               withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
                 container('k8s-kubectl') {
+                  sh 'kubectl config use-context kubernetes-admin@cluster.local'
                   sh 'kubectl get nodes'
                 }}
             }
@@ -64,7 +65,9 @@ pipeline {
                 branch 'dev'
             }
             steps {
+              withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
                 container('k8s-kubectl') {
+                  sh 'kubectl config use-context docker-desktop'
                   sh 'kubectl get nodes'
                 }
             }
