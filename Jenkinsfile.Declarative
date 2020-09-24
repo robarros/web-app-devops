@@ -47,5 +47,28 @@ pipeline {
             }
     }
 
+    stage('Deploy') {
+      steps { 
+        if (env.BRANCH_NAME == 'master') {
+        stage ('branch master') {
+          echo "estou na $BRANCH_NAME"
+          container('alpine') {
+            echo "a branch atual é $BRANCH_NAME"}
+        }}
+
+        else if (env.BRANCH_NAME == 'dev') {
+          stage ('branch dev') {
+            sh 'estou na $BRANCH_NAME'
+            container('alpine') {
+              echo "a branch atual é $BRANCH_NAME"}
+          }
+        }
+
+        else {
+          sh 'echo "Branch not applicable to Jenkins... do nothing"'
+        }}
+
   }
+}
+
 }
