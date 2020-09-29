@@ -1,78 +1,71 @@
 pipeline {
-
   agent {
-      kubernetes {
-        cloud 'k8s'
-        idleMinutes '1'
-        yamlFile 'pods/KubernetesPod.yaml' 
-        label 'web-app-devops'
-      }
+    kubernetes {
+      cloud 'k8s'
+      idleMinutes '1'
+      yamlFile 'pods/KubernetesPod.yaml'
+      label 'web-app-devops'
+    }
   }
-  
+
   stages {
     stage('Checkout') {
-      steps { 
-        echo "checkout repositorio github"
+      steps {
+        echo 'checkout repositorio github'
         checkout([$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/robarros/web-app-devops.git']]])
         scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
         script {
-          TAG_IMAGE = sh(returnStdout: true, script: "git tag --sort=-creatordate | head -n 1").trim()
+          TAG_IMAGE = sh(returnStdout: true, script: 'git tag --sort=-creatordate | head -n 1').trim()
         }
         echo "ola minha $TAG_IMAGE"
-        sh "hostname"
+        sh 'hostname'
       }
     }
-    
+
     stage('Config') {
-      steps { 
-         echo "rodando container"   
-         container('alpine') {
-           sh 'printenv'
-           sh 'ls -lha'
-           echo "a tag da minha image $TAG_IMAGE"
-           echo "a branch atual é $BRANCH_NAME"
+      steps {
+        echo 'rodando container'
+        container('alpine') {
+          sh 'printenv'
+          sh 'ls -lha'
+          echo "a tag da minha image $TAG_IMAGE"
+          echo "a branch atual é $BRANCH_NAME"
         }
       }
     }
 
     stage('Create Git Tag') {
-            when {
-                branch 'master'
-            }
-            steps {
-                container('node-12') {
-                  sh 'npm ci'
-                  sh 'npx semantic-release'
-                }
-            }
+      when {
+        branch 'master'
+      }
+      steps {
+        container('node-12') {
+          sh 'npm ci'
+          sh 'npx semantic-release'
+        }
+      }
     }
 
     stage('Deploy to Dev') {
-            when {
-                branch 'dev'
-            }
-            steps {
-              withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
-                container('k8s-kubectl') {
-                  sh 'kubectl config use-context k3d-my-cluster'
-                  sh 'kubectl get nodes'
-                }}
-            }
+      agent { label 'local' }
+      when {
+        branch 'dev'
+      }
+      steps {
+        sh "hostname"}      
     }
 
     stage('Deploy to Prod') {
-            when {
-                branch 'master'
-            }
-            steps {
-              withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
-                container('k8s-kubectl') {
-                  sh 'kubectl config use-context kubernetes-admin@cluster.local'
-                  sh 'kubectl get nodes'
+      when {
+        branch 'master'
+      }
+      steps {
+        withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
+          container('k8s-kubectl') {
+            sh 'kubectl config use-context kubernetes-admin@cluster.local'
+            sh 'kubectl get nodes'
                 }}
-            }
+        }
+      }
     }
-
-}
-
-}
+    }
