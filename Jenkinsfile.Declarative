@@ -63,7 +63,6 @@ pipeline {
       }
       steps {
           container('k8s-kubectl') {
-            sh 'kubectl config use-context kubernetes-admin@cluster.local'
             sh 'kubectl get nodes'
                 }
         }
