@@ -52,7 +52,9 @@ pipeline {
         branch 'dev'
       }
       steps {
-        sh "hostname"}      
+        sh "hostname"
+        sh "ls -lha"
+        sh "printenv | sort | grep GITHUB_TOKEN"}      
     }
 
     stage('Deploy to Prod') {
