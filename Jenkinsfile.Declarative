@@ -52,10 +52,10 @@ pipeline {
         branch 'dev'
       }
       steps {
-        sh "hostname"
-        sh "ls -lha"
-        sh "printenv | sort | grep GITHUB_TOKEN"      
-    }}
+        sh 'hostname'
+        sh 'ls -lha'
+        sh 'printenv | sort | grep GITHUB_TOKEN'}
+    }
 
     stage('Deploy to Prod') {
       when {
@@ -66,7 +66,7 @@ pipeline {
           container('k8s-kubectl') {
             sh 'kubectl config use-context kubernetes-admin@cluster.local'
             sh 'kubectl get nodes'
-            }}
+                }}
         }
       }
     }
