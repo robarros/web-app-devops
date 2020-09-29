@@ -54,17 +54,19 @@ pipeline {
       steps {
         sh "hostname"
         sh "ls -lha"
-        sh "printenv | sort | grep GITHUB_TOKEN"}      
-    }
+        sh "printenv | sort | grep GITHUB_TOKEN"      
+    }}
 
     stage('Deploy to Prod') {
       when {
         branch 'master'
       }
       steps {
+        withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
           container('k8s-kubectl') {
+            sh 'kubectl config use-context kubernetes-admin@cluster.local'
             sh 'kubectl get nodes'
-                }
+            }}
         }
       }
     }
