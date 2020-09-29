@@ -47,17 +47,13 @@ pipeline {
     }
 
     stage('Deploy to Dev') {
+      agent { label 'local' }
       when {
         branch 'dev'
       }
       steps {
-        withKubeCredentials(kubectlCredentials: [[credentialsId: 'k8s-config']]) {
-          container('k8s-kubectl') {
-            sh 'kubectl config use-context k3d-my-cluster'
-            sh 'kubectl get nodes'
-                }}
-        }
-      }
+        sh "hostname"}      
+    }
 
     stage('Deploy to Prod') {
       when {
