@@ -4,7 +4,6 @@ pipeline {
       cloud 'k8s'
       idleMinutes '1'
       yamlFile 'pods/KubernetesPod.yaml'
-      label 'web-app-devops'
     }
   }
 
@@ -52,9 +51,8 @@ pipeline {
         branch 'dev'
       }
       steps {
-        sh 'hostname'
-        sh 'ls -lha'
-        sh 'printenv | sort | grep GITHUB_TOKEN'}
+        sh "hostname"
+        sh "ls -lha"} 
     }
 
     stage('Deploy to Prod') {
@@ -66,7 +64,7 @@ pipeline {
           container('k8s-kubectl') {
             sh 'kubectl config use-context kubernetes-admin@cluster.local'
             sh 'kubectl get nodes'
-                }}
+            }}
         }
       }
     }
