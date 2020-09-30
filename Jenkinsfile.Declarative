@@ -4,7 +4,6 @@ pipeline {
       cloud 'k8s'
       idleMinutes '1'
       yamlFile 'pods/KubernetesPod.yaml'
-      label 'web-app-devops'
     }
   }
 
