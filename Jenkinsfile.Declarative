@@ -30,7 +30,6 @@ pipeline {
           sh 'ls -lha'
           echo "a tag da minha image $TAG_IMAGE"
           echo "a branch atual é $BRANCH_NAME"
-          sh "hostname > tag.txt"
         }
       }
     }
@@ -54,8 +53,7 @@ pipeline {
       }
       steps {
         sh "hostname"
-        sh "ls -lha"
-        sh "cat tag.txt"}      
+        sh "ls -lha"} 
     }
 
     stage('Deploy to Prod') {
