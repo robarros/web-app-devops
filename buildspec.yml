@@ -5,6 +5,7 @@ phases:
       nodejs: 10
     commands:
       - echo Installing app
+      - TAG_IMAGE=$(git tag --sort=-creatordate | head -n 1)
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
@@ -16,6 +17,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo $TAG_IMAGE
 # Include only the files required for your application to run.
 artifacts:
   files:
